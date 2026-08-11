@@ -18,11 +18,14 @@ Abrí [http://localhost:3000](http://localhost:3000).
 
 ## GitHub Pages
 
-El sitio se exporta estático (`output: "export"`) y se publica con GitHub Actions.
+El sitio compilado vive en la rama `gh-pages` (no en `main`).
 
-1. En el repo: **Settings → Pages → Source: GitHub Actions**
-2. Cada push a `main` (y un rebuild diario) genera el sitio
-3. Queda en `https://diazdiegok.github.io/Leonel_Daniel_Aguirre/`
+1. **Settings → Pages → Build and deployment**
+2. **Source:** Deploy from a branch
+3. **Branch:** `gh-pages` / `/ (root)`
+4. Queda en `https://diazdiegok.github.io/Leonel_Daniel_Aguirre/`
+
+Cada push a `main` vuelve a generar y publicar esa rama.
 
 Para que ranking y resultados se actualicen en Pages, agregá el secret `PADEL_API_TOKEN` en **Settings → Secrets and variables → Actions**.
 
