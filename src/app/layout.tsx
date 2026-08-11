@@ -14,7 +14,9 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"),
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL || "https://diazdiegok.github.io/Leonel_Daniel_Aguirre",
+  ),
   title: {
     default: "El Tolito | Leonel Daniel Aguirre",
     template: "%s | El Tolito",

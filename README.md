@@ -1,46 +1,38 @@
 # El Tolito — Leonel Daniel Aguirre
 
-Sitio web del jugador profesional argentino de pádel **Leonel Daniel Aguirre** (*El Tolito*), del circuito **Premier Padel / FIP**.
+Sitio de **Leonel Daniel Aguirre** (*El Tolito*), jugador profesional argentino de pádel (Premier Padel / FIP).
 
-Incluye biografía, recorrido, parejas, palmarés, tablero de estadísticas, ranking y calendario. Los datos vivos salen de [Padel API](https://padelapi.org); si no hay token, el sitio usa un snapshot oficial FIP (actualizado a agosto 2026).
+Ranking, recorrido, parejas, palmarés, tablero, galería, sponsors y calendario. Los datos vivos salen de [Padel API](https://padelapi.org); si no hay token, se usa un snapshot FIP.
 
-## Cómo correrlo
+**GitHub:** https://github.com/diazdiegok/Leonel_Daniel_Aguirre  
+**GitHub Pages:** https://diazdiegok.github.io/Leonel_Daniel_Aguirre/
+
+## Cómo correrlo en local
 
 ```bash
 npm install
-cp .env.example .env.local   # opcional, para datos en vivo
 npm run dev
 ```
 
 Abrí [http://localhost:3000](http://localhost:3000).
 
-## API de pádel
+## GitHub Pages
 
-1. Creá cuenta en [padelapi.org](https://padelapi.org/register)
-2. Generá un token en [API Tokens](https://padelapi.org/user/api-tokens)
-3. Pegalo en `.env.local`:
+El sitio se exporta estático (`output: "export"`) y se publica con GitHub Actions.
 
-```
-PADEL_API_TOKEN=tu_token
-```
+1. En el repo: **Settings → Pages → Source: GitHub Actions**
+2. Cada push a `main` (y un rebuild diario) genera el sitio
+3. Queda en `https://diazdiegok.github.io/Leonel_Daniel_Aguirre/`
 
-El backend (`src/lib/dashboard.ts`) consulta:
+Para que ranking y resultados se actualicen en Pages, agregá el secret `PADEL_API_TOKEN` en **Settings → Secrets and variables → Actions**.
 
-- perfil y ranking del jugador
-- partidos recientes
-- historial de parejas
-- ranking FIP
-- torneos próximos
-- partidos en vivo
+## API de pádel (opcional)
 
-La página se revalida cada 30 minutos (`revalidate = 1800`).
+1. Cuenta en [padelapi.org](https://padelapi.org/register)
+2. Token en [API Tokens](https://padelapi.org/user/api-tokens)
+3. Local: `.env.local` con `PADEL_API_TOKEN=...`
+4. GitHub Pages: el mismo valor como secret del repo
 
 ## Stack
 
-- Next.js 16 (App Router) + TypeScript
-- Tailwind CSS 4
-- Foto oficial FIP en `public/players/aguirre.png`
-
-## Repo
-
-https://github.com/diazdiegok/Leonel_Daniel_Aguirre
+Next.js 16 (export estático) · TypeScript · Tailwind CSS 4

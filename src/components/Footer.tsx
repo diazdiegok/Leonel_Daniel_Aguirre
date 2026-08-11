@@ -26,6 +26,9 @@ export function Footer({ data }: { data: DashboardData }) {
             <a className="rounded-full border border-white/15 px-4 py-2 hover:border-celeste" href="https://github.com/diazdiegok/Leonel_Daniel_Aguirre" target="_blank" rel="noreferrer">
               GitHub
             </a>
+            <a className="rounded-full border border-white/15 px-4 py-2 hover:border-celeste" href="https://diazdiegok.github.io/Leonel_Daniel_Aguirre/" target="_blank" rel="noreferrer">
+              GitHub Pages
+            </a>
           </div>
         </div>
         <div className="rounded-3xl border border-white/10 bg-panel p-5 text-sm text-mute">

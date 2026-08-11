@@ -79,11 +79,32 @@ export function Hero({ data }: { data: DashboardData }) {
       </div>
 
       <dl className="relative mx-auto grid max-w-6xl grid-cols-2 border-y border-white/10 md:grid-cols-5">
-        <Stat k="Ranking FIP" v={`#${p.ranking ?? "—"}`} />
-        <Stat k="Puntos" v={numberFmt(p.points)} />
-        <Stat k="Mejor ranking" v={`#${p.bestRanking ?? "—"}`} />
-        <Stat k="Race 2026" v={`#${p.raceRanking ?? "—"}`} />
-        <Stat k="Elo" v={p.elo ? numberFmt(p.elo) : "—"} className="col-span-2 md:col-span-1" />
+        <Stat
+          k="Ranking FIP"
+          v={`#${p.ranking ?? "—"}`}
+          hint="Posición mundial oficial de esta semana"
+        />
+        <Stat
+          k="Puntos"
+          v={numberFmt(p.points)}
+          hint="Puntos rolling que arman el ranking"
+        />
+        <Stat
+          k="Mejor ranking"
+          v={`#${p.bestRanking ?? "—"}`}
+          hint="Techo de su carrera en el circuito FIP"
+        />
+        <Stat
+          k="Race 2026"
+          v={`#${p.raceRanking ?? "—"}`}
+          hint="Solo puntos de esta temporada"
+        />
+        <Stat
+          k="Elo"
+          v={p.elo ? numberFmt(p.elo) : "—"}
+          hint="Fuerza real vs el resto (Padel API)"
+          className="col-span-2 md:col-span-1"
+        />
       </dl>
     </section>
   );
@@ -100,16 +121,19 @@ function Badge({ children }: { children: ReactNode }) {
 function Stat({
   k,
   v,
+  hint,
   className = "",
 }: {
   k: string;
   v: string;
+  hint?: string;
   className?: string;
 }) {
   return (
     <div className={`border-white/10 px-5 py-5 md:border-r last:border-r-0 ${className}`}>
       <dt className="text-[10px] uppercase tracking-[0.24em] text-mute">{k}</dt>
       <dd className="mt-1 font-display text-4xl tracking-wide text-gold">{v}</dd>
+      {hint ? <p className="mt-1 text-[11px] leading-4 text-mute/80">{hint}</p> : null}
     </div>
   );
 }

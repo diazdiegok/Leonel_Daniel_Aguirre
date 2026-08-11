@@ -8,6 +8,8 @@ const LINKS = [
   ["#parejas", "Parejas"],
   ["#logros", "Logros"],
   ["#tablero", "Tablero"],
+  ["#galeria", "Galería"],
+  ["#sponsors", "Sponsors"],
   ["#calendario", "Calendario"],
 ];
 
@@ -46,12 +48,12 @@ export function Navbar({ live }: { live?: boolean }) {
           </span>
         </a>
 
-        <div className="hidden items-center gap-7 md:flex">
+        <div className="hidden items-center gap-4 lg:flex xl:gap-6">
           {LINKS.map(([href, label]) => (
             <a
               key={href}
               href={href}
-              className="text-xs uppercase tracking-[0.22em] text-mute transition hover:text-celeste"
+              className="text-[11px] uppercase tracking-[0.18em] text-mute transition hover:text-celeste"
             >
               {label}
             </a>
@@ -69,7 +71,7 @@ export function Navbar({ live }: { live?: boolean }) {
 
         <button
           type="button"
-          className="grid h-10 w-10 place-items-center rounded-full border border-white/15 md:hidden"
+          className="grid h-10 w-10 place-items-center rounded-full border border-white/15 lg:hidden"
           onClick={() => setOpen((v) => !v)}
           aria-label="Menú"
         >
@@ -78,7 +80,7 @@ export function Navbar({ live }: { live?: boolean }) {
       </nav>
 
       {open ? (
-        <div className="border-t border-white/10 bg-ink/95 px-5 py-4 md:hidden">
+        <div className="border-t border-white/10 bg-ink/95 px-5 py-4 lg:hidden">
           <div className="grid gap-3">
             {LINKS.map(([href, label]) => (
               <a
