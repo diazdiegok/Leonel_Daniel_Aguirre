@@ -21,7 +21,6 @@ function goTo(id: string) {
 }
 
 export function Navbar() {
-  const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [active, setActive] = useState("");
 
@@ -29,8 +28,8 @@ export function Navbar() {
     const ids = LINKS.map(([href]) => href.slice(1));
 
     const onScroll = () => {
-      setScrolled(window.scrollY > 12);
-      const offset = 110;
+      setScrolled(window.scrollY > 8);
+      const offset = window.innerWidth < 1024 ? 130 : 110;
       let current = "";
       for (const id of ids) {
         const el = document.getElementById(id);
@@ -45,38 +44,29 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const linkClass = (href: string, mobile = false) => {
-    const on = active === href;
-    if (mobile) {
-      return on
-        ? "font-display text-2xl tracking-wide text-gold"
-        : "font-display text-2xl tracking-wide text-sand";
-    }
-    return on
-      ? "rounded-full bg-gold/20 px-3 py-1 text-[11px] uppercase tracking-[0.18em] text-gold shadow-[0_0_18px_rgba(227,195,122,0.45)]"
-      : "rounded-full px-3 py-1 text-[11px] uppercase tracking-[0.18em] text-mute transition hover:text-celeste";
-  };
+  const pill = (href: string) =>
+    active === href
+      ? "shrink-0 rounded-full bg-gold px-3 py-1.5 text-[11px] font-medium uppercase tracking-[0.16em] text-ink shadow-[0_0_16px_rgba(227,195,122,0.55)]"
+      : "shrink-0 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-[11px] uppercase tracking-[0.16em] text-sand";
 
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all ${
-        scrolled || open
-          ? "border-b border-white/10 bg-ink/85 backdrop-blur-xl"
-          : "bg-transparent"
+        scrolled ? "border-b border-white/10 bg-ink/92 backdrop-blur-xl" : "bg-ink/80 backdrop-blur-md lg:bg-transparent lg:backdrop-blur-0"
       }`}
     >
       <div className="arg-stripe h-[3px] w-full" />
-      <nav className="mx-auto flex max-w-6xl items-center justify-between px-5 py-3">
+      <nav className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-2.5 sm:px-5">
         <button
           type="button"
           onClick={() => goTo("top")}
-          className="flex items-center gap-3 text-left"
+          className="flex min-w-0 items-center gap-2 text-left sm:gap-3"
         >
-          <span className="grid h-10 w-10 place-items-center rounded-full border border-gold/50 bg-ink-2 font-display text-lg tracking-wide text-gold">
+          <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full border border-gold/50 bg-ink-2 font-display text-base tracking-wide text-gold sm:h-10 sm:w-10 sm:text-lg">
             TA
           </span>
           <span className="leading-tight">
-            <span className="block font-display text-xl tracking-[0.18em] text-sand">
+            <span className="block font-display text-lg tracking-[0.18em] text-sand sm:text-xl">
               TOLITO
             </span>
             <span className="block text-[10px] uppercase tracking-[0.28em] text-mute">
@@ -91,7 +81,11 @@ export function Navbar() {
               key={href}
               type="button"
               onClick={() => goTo(href)}
-              className={linkClass(href)}
+              className={
+                active === href
+                  ? "rounded-full bg-gold/20 px-3 py-1 text-[11px] uppercase tracking-[0.18em] text-gold shadow-[0_0_18px_rgba(227,195,122,0.45)]"
+                  : "rounded-full px-3 py-1 text-[11px] uppercase tracking-[0.18em] text-mute transition hover:text-celeste"
+              }
             >
               {label}
             </button>
@@ -106,43 +100,30 @@ export function Navbar() {
           </a>
         </div>
 
-        <button
-          type="button"
-          className="grid h-10 w-10 place-items-center rounded-full border border-white/15 lg:hidden"
-          onClick={() => setOpen((v) => !v)}
-          aria-label="Menú"
+        <a
+          href={SITE.fip}
+          target="_blank"
+          rel="noreferrer"
+          className="shrink-0 rounded-full bg-gold px-3 py-2 text-[10px] uppercase tracking-[0.16em] text-ink lg:hidden"
         >
-          <span className="block h-px w-4 bg-sand" />
-        </button>
+          Perfil FIP
+        </a>
       </nav>
 
-      {open ? (
-        <div className="border-t border-white/10 bg-ink/95 px-5 py-4 lg:hidden">
-          <div className="grid gap-3">
-            {LINKS.map(([href, label]) => (
-              <button
-                key={href}
-                type="button"
-                onClick={() => {
-                  goTo(href);
-                  setOpen(false);
-                }}
-                className={`${linkClass(href, true)} text-left`}
-              >
-                {label}
-              </button>
-            ))}
-            <a
-              href={SITE.fip}
-              target="_blank"
-              rel="noreferrer"
-              className="font-display text-2xl tracking-wide text-gold"
+      <div className="border-t border-white/10 lg:hidden">
+        <div className="flex gap-2 overflow-x-auto px-4 py-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          {LINKS.map(([href, label]) => (
+            <button
+              key={href}
+              type="button"
+              onClick={() => goTo(href)}
+              className={pill(href)}
             >
-              Perfil FIP
-            </a>
-          </div>
+              {label}
+            </button>
+          ))}
         </div>
-      ) : null}
+      </div>
     </header>
   );
 }

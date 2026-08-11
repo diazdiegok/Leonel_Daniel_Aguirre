@@ -8,7 +8,7 @@ export function Hero({ data }: { data: DashboardData }) {
   const live = data.live[0];
 
   return (
-    <section id="top" className="relative overflow-hidden pt-28">
+    <section id="top" className="relative overflow-hidden pt-32 lg:pt-28">
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute -left-24 top-10 h-72 w-72 rounded-full bg-celeste/15 blur-3xl" />
         <div className="absolute right-0 top-40 h-80 w-80 rounded-full bg-gold/10 blur-3xl" />
