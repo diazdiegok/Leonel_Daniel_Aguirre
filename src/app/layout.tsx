@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Bebas_Neue, Outfit } from "next/font/google";
+import { Loader } from "@/components/Loader";
 import "./globals.css";
 
 const bebas = Bebas_Neue({
@@ -48,6 +49,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="es-AR">
       <body className={`${bebas.variable} ${outfit.variable} court-bg antialiased`}>
+        <Loader />
         {children}
       </body>
     </html>

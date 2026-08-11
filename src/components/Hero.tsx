@@ -1,5 +1,5 @@
-import Image from "next/image";
 import type { ReactNode } from "react";
+import { Img } from "@/components/Img";
 import type { DashboardData } from "@/lib/types";
 import { countryFlag, numberFmt } from "@/lib/format";
 
@@ -59,7 +59,7 @@ export function Hero({ data }: { data: DashboardData }) {
           <div className="photo-ring rounded-[2.2rem] p-[2px] glow-celeste">
             <div className="relative overflow-hidden rounded-[2.1rem] bg-ink-2">
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_30%,rgba(126,208,239,0.16),transparent_55%)]" />
-              <Image
+              <Img
                 src={p.photoUrl}
                 alt={p.name}
                 width={640}

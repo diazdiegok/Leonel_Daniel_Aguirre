@@ -1,8 +1,8 @@
 "use client";
 
-import Image from "next/image";
 import { useState } from "react";
 import { Header } from "@/components/Bio";
+import { Img } from "@/components/Img";
 
 const ITEMS = [
   {
@@ -59,11 +59,10 @@ export function Gallery() {
             className="group relative overflow-hidden rounded-3xl border border-white/10 bg-ink-2 text-left"
           >
             <div className="relative h-72">
-              <Image
+              <Img
                 src={item.src}
                 alt={item.title}
                 fill
-                sizes="(min-width: 768px) 50vw, 100vw"
                 className={`transition duration-500 group-hover:scale-[1.03] ${
                   item.fit === "contain" ? "object-contain object-bottom p-6" : "object-cover"
                 }`}
@@ -101,7 +100,7 @@ export function Gallery() {
             onClick={(e) => e.stopPropagation()}
           >
             <div className="relative h-[70vh] min-h-80">
-              <Image
+              <Img
                 src={current.src}
                 alt={current.title}
                 fill

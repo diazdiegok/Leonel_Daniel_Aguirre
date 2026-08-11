@@ -13,6 +13,8 @@ const nextConfig: NextConfig = {
   },
   images: {
     unoptimized: true,
+    loader: "custom",
+    loaderFile: "./src/lib/image-loader.ts",
     remotePatterns: [
       { protocol: "https", hostname: "www.padelfip.com" },
       { protocol: "https", hostname: "padelapi.org" },
