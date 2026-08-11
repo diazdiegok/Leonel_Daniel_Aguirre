@@ -204,6 +204,8 @@ export function fallbackDashboard(): DashboardData {
       coaches: ["Juan Manuel Rodríguez", "Agustín Gómez Silingo"],
       currentPartner: "Pablo García",
       currentPartnerNationality: "ESP",
+      racketBrand: "Hirostar",
+      racketModel: "Alien Pro 26",
       elo: null,
     },
     seasonStats: SEASON_STATS,

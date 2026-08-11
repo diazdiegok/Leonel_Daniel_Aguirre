@@ -19,6 +19,8 @@ export type PlayerCard = {
   coaches: string[];
   currentPartner: string | null;
   currentPartnerNationality: string | null;
+  racketBrand: string;
+  racketModel: string;
   elo: number | null;
 };
 

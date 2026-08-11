@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { SITE } from "@/data/biography";
 
 const LINKS = [
   ["#vida", "Vida"],
@@ -13,7 +14,7 @@ const LINKS = [
   ["#calendario", "Calendario"],
 ];
 
-export function Navbar({ live }: { live?: boolean }) {
+export function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -58,15 +59,14 @@ export function Navbar({ live }: { live?: boolean }) {
               {label}
             </a>
           ))}
-          <span
-            className={`rounded-full border px-3 py-1 text-[10px] uppercase tracking-[0.2em] ${
-              live
-                ? "border-celeste/40 bg-celeste/10 text-celeste"
-                : "border-white/10 text-mute"
-            }`}
+          <a
+            href={SITE.fip}
+            target="_blank"
+            rel="noreferrer"
+            className="rounded-full border border-gold/40 bg-gold/10 px-3 py-1 text-[10px] uppercase tracking-[0.2em] text-gold transition hover:bg-gold hover:text-ink"
           >
-            {live ? "API en vivo" : "Snapshot FIP"}
-          </span>
+            Perfil FIP ↗
+          </a>
         </div>
 
         <button
@@ -92,6 +92,14 @@ export function Navbar({ live }: { live?: boolean }) {
                 {label}
               </a>
             ))}
+            <a
+              href={SITE.fip}
+              target="_blank"
+              rel="noreferrer"
+              className="font-display text-2xl tracking-wide text-gold"
+            >
+              Perfil FIP
+            </a>
           </div>
         </div>
       ) : null}

@@ -19,7 +19,7 @@ export default async function HomePage() {
 
   return (
     <>
-      <Navbar live={data.apiConnected} />
+      <Navbar />
       <main>
         <Hero data={data} />
         <Ticker results={data.results} />

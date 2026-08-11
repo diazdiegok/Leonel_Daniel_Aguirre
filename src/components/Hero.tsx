@@ -95,15 +95,15 @@ export function Hero({ data }: { data: DashboardData }) {
           hint="Techo de su carrera en el circuito FIP"
         />
         <Stat
-          k="Race 2026"
-          v={`#${p.raceRanking ?? "—"}`}
-          hint="Solo puntos de esta temporada"
+          k="Compañero"
+          v={p.currentPartner ?? "—"}
+          hint={p.currentPartnerNationality ? `Dupla actual · ${p.currentPartnerNationality}` : "Dupla actual"}
         />
         <Stat
-          k="Elo"
-          v={p.elo ? numberFmt(p.elo) : "—"}
-          hint="Fuerza real vs el resto (Padel API)"
-          className="col-span-2 md:col-span-1"
+          k="Pala"
+          v={p.racketBrand}
+          hint={p.racketModel}
+          className="md:border-r-0"
         />
       </dl>
     </section>
@@ -132,7 +132,7 @@ function Stat({
   return (
     <div className={`border-white/10 px-5 py-5 md:border-r last:border-r-0 ${className}`}>
       <dt className="text-[10px] uppercase tracking-[0.24em] text-mute">{k}</dt>
-      <dd className="mt-1 font-display text-4xl tracking-wide text-gold">{v}</dd>
+      <dd className="mt-1 font-display text-3xl tracking-wide text-gold md:text-4xl">{v}</dd>
       {hint ? <p className="mt-1 text-[11px] leading-4 text-mute/80">{hint}</p> : null}
     </div>
   );
